@@ -1,0 +1,37 @@
+server:
+  port: 8992
+
+spring:
+  application:
+    name: CLOUD-GATEWAY
+
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      routes:
+        - id: SECURITY-SERVICE
+          uri: lb://SECURITY-SERVICE
+          predicates:
+            - Path=/users/**
+
+        - id: PET-SERVICE
+          uri: lb://PET-SERVICE
+          predicates:
+            - Path=/pets/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+    hostname: localhost

@@ -1,0 +1,23 @@
+<div fxLayoutAlign="center center" fxFill >
+  <mat-card fxFlex="30">
+    <mat-toolbar color="secondary">Register</mat-toolbar>
+    <form (submit)="doRegister()" [formGroup]="formGroup" fxLayout="column">
+      <mat-form-field>
+        <input matInput name="firstName" formControlName="firstName" placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="lastName" formControlName="lastName" placeholder="Last Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="userName" formControlName="userName" placeholder="Username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" name="password" formControlName="password" placeholder="Password">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Register</button>
+    </form>
+  </mat-card>
+</div>

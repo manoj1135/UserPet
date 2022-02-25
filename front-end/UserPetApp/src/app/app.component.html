@@ -1,0 +1,10 @@
+<app-header [drawer]="drawer"></app-header>
+<mat-drawer-container class="example-container" fxFill>
+  <mat-drawer mode="side" opened #drawer>
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet name="louginOutlet"></router-outlet>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

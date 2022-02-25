@@ -1,0 +1,21 @@
+<div fxLayoutAlign="center center" fxFill="70">
+  <mat-card fxFlex="25">
+    <mat-toolbar color="secondary">Login</mat-toolbar>
+    <form fxLayout="column" (ngSubmit)="doLogin()" [formGroup]="formGroup" >
+      <mat-form-field>
+        <input matInput name="userName" formControlName="userName" placeholder="Username">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput name="userName" formControlName="password" placeholder="Password">
+      </mat-form-field>
+      <div fxLayout="row">
+        <a color="primary" [routerLink]="['',{outlets:{'louginOutlet':['register']}}]">Register</a>
+        <a [routerLink]="['',{outlets:{'louginOutlet':['forgotPw']}}]">Forgot Password</a>
+      </div>
+      <button type="submit" mat-raised-button color="primary">Login
+        <mat-spinner color="$mat-white" *ngIf="isSubmitted">
+        </mat-spinner>
+      </button>
+    </form>
+  </mat-card>
+</div>

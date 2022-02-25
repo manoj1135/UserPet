@@ -1,0 +1,17 @@
+ <mat-toolbar color="secondary" class="headerClass">
+    <mat-toolbar-row>
+      <button mat-button (click)="toggleDrawer()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>UserPet App</span>
+      <span fxFlex></span>
+      <img class="avatar" src="assets/images/avatar.png" width="20" height="20"/>
+      <button mat-button [matMenuTriggerFor]="profileMenu">
+        {{authService.getLoggedInUserName()}}
+      </button>
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item (click)="myPets()">My Pets</button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>

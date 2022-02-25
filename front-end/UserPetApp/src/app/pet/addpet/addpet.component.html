@@ -1,0 +1,15 @@
+<div fxLayoutAlign="center center" fxFill >
+  <mat-card fxFlex="30">
+    <mat-toolbar color="secondary">Add Pet</mat-toolbar>
+    <form (submit)="addPet()" [formGroup]="formGroup" fxLayout="column">
+      <mat-form-field>
+        <input matInput name="name" formControlName="name" placeholder="Pet Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="owner" formControlName="owner" placeholder="Owner">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>
+
