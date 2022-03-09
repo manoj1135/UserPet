@@ -1,10 +1,20 @@
-<div fxFill>
-  <mat-list dense>
-    <a [routerLink]="['/home']" mat-list-item>Home</a>
-    <mat-divider></mat-divider>
-    <a [routerLink]="['/addUser']" mat-list-item>Add User</a>
-    <mat-divider></mat-divider>
-    <a [routerLink]="['/addPet']" mat-list-item>Add Pet</a>
-    <mat-divider></mat-divider>
-   </mat-list>
+<div>
+   <mat-sidenav-container>
+     <mat-nav-list>
+       <mat-list-item routerLink="/home" [disabled]="!isUserLoggedIn()" >
+         <mat-icon>home</mat-icon>
+         <span *ngIf="isOpen" class="menu-text">Home</span>
+       </mat-list-item>
+       <mat-divider></mat-divider>
+       <mat-list-item routerLink="/users" [disabled]="!isUserLoggedIn()">
+        <mat-icon>people</mat-icon>
+        <span *ngIf="isOpen" class="menu-text">Users</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="/pets" [disabled]="!isUserLoggedIn()">
+        <mat-icon>android</mat-icon>
+        <span *ngIf="isOpen" class="menu-text">Pets</span>
+      </mat-list-item>
+     </mat-nav-list>
+   </mat-sidenav-container>
 </div>

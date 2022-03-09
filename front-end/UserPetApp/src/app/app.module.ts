@@ -11,6 +11,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AuthModule,
     DashboardModule,
     MaterialModules,
+    UserModule,
     NgbModule
   ],
   providers: [],

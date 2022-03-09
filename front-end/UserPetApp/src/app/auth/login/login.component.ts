@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CommonUtil } from 'src/app/common/CommonUtil';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     userName: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
   });
-  constructor(private authService:AuthService, private router:Router, private snackBar: MatSnackBar) { }
+  constructor(private authService:AuthService, private router:Router, private commonUtil: CommonUtil) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         }, err=>{
           this.isSubmitted = false;
           console.error("Error ",err);
-          this.snackBar.open(err.message,"Close",{duration:2000});
+          this.commonUtil.showSnackBar(err.message);
         });
     }
   }

@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,9 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() drawer:MatDrawer | undefined;
+  @Input() isOpen: Boolean | undefined;
+  @Output() emitter:EventEmitter<Boolean> = new EventEmitter();
   constructor(public authService:AuthService, private router:Router) { }
-
   ngOnInit(): void {
     let loggedInUser = this.authService.getAuth();
     if(!loggedInUser.userName){
@@ -20,7 +19,8 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDrawer(){
-    this.drawer?.toggle();
+    this.isOpen = !this.isOpen;
+    this.emitter.emit(this.isOpen)
   }
 
   myPets(){

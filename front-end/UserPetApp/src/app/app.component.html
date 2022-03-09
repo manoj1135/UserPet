@@ -1,7 +1,9 @@
-<app-header [drawer]="drawer"></app-header>
+<div class="header-component">
+  <app-header [isOpen]="isOpen" (emitter)="toggleDrawer($event)"></app-header>
+</div>
 <mat-drawer-container class="example-container" fxFill>
-  <mat-drawer mode="side" opened #drawer>
-    <app-sidebar></app-sidebar>
+  <mat-drawer mode="side" opened class="sidebar-class">
+    <app-sidebar [isOpen]="isOpen"></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet name="louginOutlet"></router-outlet>

@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonUtil } from 'src/app/common/CommonUtil';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { CustomValidator } from 'src/app/util/custom.validator';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class AddUserComponent implements OnInit {
   formGroup : FormGroup = new FormGroup({
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
@@ -20,22 +20,25 @@ export class RegisterComponent implements OnInit {
   },
     CustomValidator.mustMatch('password', 'confirmPassword')
   );
-  constructor(private authService:AuthService, private router:Router, private commonUtil: CommonUtil) { }
+  constructor(private userService:UserService, private router:Router, private commonUtil: CommonUtil) { }
 
   ngOnInit(): void {
   }
-
-  doRegister(){
+  addUser(){
     if(this.formGroup.valid){
-      this.authService.doRegister(this.formGroup.value)
+      this.userService.addUser(this.formGroup.value)
       .subscribe(resp =>{
-        console.log("Register resp ",resp);
-        this.commonUtil.showSnackBar("Registered successfully.");
-        this.router.navigateByUrl("/(louginOutlet:login)");
+        console.log("add user ",resp);
+        if(undefined != resp.error){
+          this.commonUtil.showSnackBar(resp.error);
+        }else{
+          this.router.navigateByUrl("/users");
+          this.commonUtil.showSnackBar("User added successfully.");
+        }
       },
       err =>{
+        console.error("Add User failed ",err);
         this.commonUtil.showSnackBar(err.message);
-        console.error("Registration failed ",err);
       });
     }
   }

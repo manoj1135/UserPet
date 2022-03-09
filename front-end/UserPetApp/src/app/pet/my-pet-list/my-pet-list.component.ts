@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CommonUtil } from 'src/app/common/CommonUtil';
 import { Pet } from 'src/app/models/Pet';
 import { AuthService } from 'src/app/services/auth.service';
 import { PetService } from 'src/app/services/pet.service';
@@ -12,7 +12,7 @@ import { PetService } from 'src/app/services/pet.service';
 })
 export class MyPetListComponent implements OnInit {
 
-  constructor(private petService:PetService, private authService:AuthService, private snackBar:MatSnackBar, private router:Router) { }
+  constructor(private petService:PetService, private authService:AuthService, private commonUtil:CommonUtil, private router:Router) { }
   myPetList!: Pet[];
   displayedColumns: string[] = ['id', 'name', 'owner','buylink'];
   ngOnInit(): void {
@@ -28,11 +28,12 @@ export class MyPetListComponent implements OnInit {
 
   sellPet(id:Number){
     this.petService.sellPet(id).subscribe(resp=>{
-      this.snackBar.open("Successfully sold.","Close",{duration:2000});
-      this.router.navigateByUrl("/home");
+      this.commonUtil.showSnackBar("Successfully sold.");
+      this.router.navigateByUrl("/myPets");
+      this.ngOnInit();
     },err=>{
       console.error("Unable to sell ",err);
-      this.snackBar.open("Failed to sell "+err.message,"Close",{duration:2000});
+      this.commonUtil.showSnackBar("Failed to sell "+err.message);
     })
   }
 }

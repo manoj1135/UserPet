@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
-import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { AddUserComponent } from './add-user/add-user.component';
     ForgotpwComponent,
     ResetpwComponent,
     RegisterComponent,
-    AddUserComponent
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Pet } from 'src/app/models/Pet';
+import { CommonUtil } from 'src/app/common/CommonUtil';
 import { PetService } from 'src/app/services/pet.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class AddpetComponent implements OnInit {
     owner: new FormControl(""),
     isAvailable: new FormControl("true")
   });
-  constructor(private petService:PetService, private snackBar: MatSnackBar, private router:Router) { }
+  constructor(private petService:PetService, private commonUtil: CommonUtil, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +23,11 @@ export class AddpetComponent implements OnInit {
   addPet(){
     if(this.formGroup.valid){
       this.petService.addPet(this.formGroup.value).subscribe(resp=>{
-        this.snackBar.open("Pet added successfully.","Close",{duration:2000});
-        this.router.navigateByUrl("/home");
+        this.commonUtil.showSnackBar("Pet added successfully.");
+        this.router.navigateByUrl("/pets");
       },err=>{
         console.error("Unable to save ",err);
-        this.snackBar.open(err.message,"Close",{duration:2000});
+        this.commonUtil.showSnackBar(err.message);
       })
     }
   }

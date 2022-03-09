@@ -24,6 +24,21 @@ export class PetService {
     );
   }
 
+  getPetById(petId:Number):Observable<any>{
+    return this.httpClient.get(
+      `${baseUrl}/pets/`+petId,
+      this.httpOptions
+    )
+  }
+
+  savePet(data:Pet):Observable<any>{
+    return this.httpClient.put(
+      `${baseUrl}/pets/`,
+      data,
+      this.httpOptions
+    );
+  }
+
   addPet(data:Pet){
     return this.httpClient.post(
       `${baseUrl}/pets/`,
@@ -37,6 +52,12 @@ export class PetService {
       `${baseUrl}/pets/buyPet`,
       data,
       this.httpOptions
+    );
+  }
+
+  deletePet(id:any):Observable<any>{
+    return this.httpClient.delete(
+      `${baseUrl}/pets/`+id
     );
   }
 
