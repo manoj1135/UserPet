@@ -1,0 +1,14 @@
+server:
+  port: 8888
+logging:
+  level:
+    manoj: DEBUG
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          uri: file:///home/manoj/GitRepo/config

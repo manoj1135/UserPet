@@ -1,0 +1,11 @@
+server:
+  port: 8990
+
+spring:
+  application:
+    name: PET-SERVICE
+  cloud:
+    config:
+      profile: main
+  config:
+    import: configserver:http://localhost:8888/Configuration
