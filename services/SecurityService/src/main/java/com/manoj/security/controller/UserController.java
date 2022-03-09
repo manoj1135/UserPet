@@ -29,7 +29,7 @@ public class UserController {
 		return this.userService.getAllUsers();
 	}
 	
-	@PostMapping("/")
+	@PutMapping("/")
 	public User saveUser(@RequestBody User user) throws UserAlreadyExistException {
 		return this.userService.saveUser(user);
 	}

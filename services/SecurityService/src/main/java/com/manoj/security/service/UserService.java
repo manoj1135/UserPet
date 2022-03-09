@@ -31,14 +31,22 @@ public class UserService {
 	public User saveUser(User user) throws UserAlreadyExistException {
 		String username = user.getUserName();
 		boolean isValid = validateUserName(username);
-		if(isValid) {
+		if(null == user.getId()){
+			if(isValid) {
+				String password = user.getPassword();
+				password = Base64.getEncoder().encodeToString(password.getBytes());
+				user.setPassword(password);
+				return this.userRepo.save(user);
+			}else {
+				throw new UserAlreadyExistException("Username already exist");
+			}
+		}else{
 			String password = user.getPassword();
 			password = Base64.getEncoder().encodeToString(password.getBytes());
 			user.setPassword(password);
-			return this.userRepo.save(user);			
-		}else {
-			throw new UserAlreadyExistException("Username already exist");
+			return this.userRepo.save(user);
 		}
+
 	}
 
 	public User getUser(Integer id) throws UserNotFoundException {

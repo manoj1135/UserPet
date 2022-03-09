@@ -23,18 +23,22 @@ public class PetService {
 	private RestTemplate restTemplate;
 	
 	public List<Pet> getAllPets(){
+		log.info("Get all pets");
 		return this.petRepo.findAll();
 	}
 	
 	public List<Pet> getPetsForUser(String username){
+		log.info("Pets for user "+username);
 		return this.petRepo.findAllByOwner(username);
 	}
 	
 	public Pet savePet(Pet pet) {
+		log.info("Save pet "+pet.toString());
 		return this.petRepo.save(pet);
 	}
 	
 	public Pet getPetById(Integer id) {
+		log.info("Get pet details for id "+id);
 		Pet pet = this.petRepo.findById(id).get();
 		if(null == pet) {
 			log.error("Pet not found");
@@ -44,6 +48,7 @@ public class PetService {
 	}
 	
 	public void deletePet(Integer id) {
+		log.info("Delete pet for id "+id);
 		this.petRepo.deleteById(id);
 	}
 	

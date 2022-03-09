@@ -42,6 +42,12 @@ public class PetController {
 		log.info("Save pet");
 		return this.petService.savePet(pet);
 	}
+
+	@PutMapping("/")
+	public Pet modifyPet(@RequestBody Pet pet) {
+		log.info("Save pet");
+		return this.petService.savePet(pet);
+	}
 	
 	@DeleteMapping("/{id}")
 	public void deletePetById(@PathVariable("id") Integer id) {
